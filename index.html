@@ -6,16 +6,8 @@
   <title>Fake Culture</title>
 
   <style>
-    /* === FONT === */
-    @font-face {
-      font-family: 'NinjitoSans';
-      src: url('NinjitoSans-ExtraBoldItalic.otf') format('opentype');
-      font-weight: 800;
-      font-style: italic;
-    }
-
     :root{
-      --blue:#1F2B3B;
+      --blue:#1F2D3D;
       --light:#F5F6F7;
       --gray:#8A8A8A;
       --black:#0E0E0E;
@@ -35,22 +27,21 @@
 
     /* HEADER */
     header{
-      background:var(--blue);
-      padding:40px;
+      position:sticky;
+      top:0;
+      background:#fff;
+      border-bottom:1px solid #eee;
+      padding:20px 40px;
       display:flex;
       justify-content:center;
       align-items:center;
+      z-index:10;
     }
 
     header h1{
-      font-family:'NinjitoSans', Helvetica, Arial, sans-serif;
-      font-size:22px;
-      font-style:italic;
-      font-weight:800;
-      letter-spacing:-1.6px;
-      line-height:0.8;
-      color:white;
-      text-align:center;
+      font-size:14px;
+      letter-spacing:2px;
+      color:var(--blue);
     }
 
     /* MAIN */
@@ -67,14 +58,15 @@
 
     .products{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:50px;
-      margin-bottom:120px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:40px;
+      margin-bottom:80px;
     }
 
     .card{
       border:1px solid #eee;
-      padding:20px;
+      padding:30px;
+      text-align:center;
     }
 
     .card img{
@@ -85,14 +77,14 @@
 
     .card h2{
       font-size:14px;
-      margin-bottom:6px;
+      margin-bottom:10px;
       letter-spacing:1px;
     }
 
     .card p{
       font-size:12px;
       color:var(--gray);
-      margin-bottom:14px;
+      margin-bottom:20px;
     }
 
     .soldout{
@@ -101,28 +93,60 @@
       padding:10px;
       font-size:12px;
       letter-spacing:1px;
-      text-align:center;
     }
 
-    /* HYPE */
+    /* COMING SOON */
     .coming{
       text-align:center;
-      margin:120px 0;
+      margin:100px 0;
     }
 
     .coming p{
       font-size:14px;
-      letter-spacing:2px;
+      letter-spacing:1px;
       color:var(--blue);
+      line-height:1.6;
     }
 
     /* FOOTER */
     footer{
       background:var(--light);
       padding:60px 40px;
+    }
+
+    .newsletter{
+      max-width:400px;
+      margin-bottom:40px;
+    }
+
+    .newsletter h4{
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    .newsletter input{
+      width:70%;
+      padding:10px;
+      border:1px solid #ccc;
+    }
+
+    .newsletter button{
+      padding:10px 15px;
+      border:none;
+      background:var(--blue);
+      color:#fff;
+      cursor:default;
+    }
+
+    .footer-bottom{
+      display:flex;
+      justify-content:space-between;
       font-size:12px;
       color:var(--gray);
-      text-align:left;
+    }
+
+    .socials span{
+      margin-left:15px;
     }
   </style>
 </head>
@@ -134,20 +158,20 @@
 </header>
 
 <main>
-  <div class="section-title">PROJECT NO. 01 — FIRST DROP</div>
+  <div class="section-title">OUR CREATIONS — DROP 01</div>
 
   <div class="products">
     <div class="card">
       <img src="placeholder-1.jpg" alt="Otro Atardecer Tee">
       <h2>OTRO ATARDECER TEE</h2>
-      <p>Archived piece</p>
+      <p>First Drop</p>
       <div class="soldout">SOLD OUT</div>
     </div>
 
     <div class="card">
       <img src="placeholder-2.jpg" alt="Goat Influence Tee">
       <h2>GOAT INFLUENCE TEE</h2>
-      <p>Archived piece</p>
+      <p>First Drop</p>
       <div class="soldout">SOLD OUT</div>
     </div>
   </div>
@@ -161,8 +185,21 @@
 </main>
 
 <footer>
-  Fake Culture © 2025<br>
-  Culture before approval.
+  <div class="newsletter">
+    <h4>JOIN OUR NEWSLETTER</h4>
+    <input type="email" placeholder="Your email here">
+    <button>Register</button>
+  </div>
+
+  <div class="footer-bottom">
+    <div>
+      Fake Culture © 2025<br>
+      stay niche for the swag
+    </div>
+    <div class="socials">
+      <span>Instagram</span>
+    </div>
+  </div>
 </footer>
 
 </body>
