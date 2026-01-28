@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fake Culture</title>
+  <title>Fake Culture — Early Access</title>
 
   <style>
     * {
@@ -15,20 +15,23 @@
     body {
       height: 100vh;
       background: #000;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: Helvetica, Arial, sans-serif;
-      color: #fff;
     }
 
     .container {
       text-align: center;
+      width: 100%;
+      max-width: 420px;
+      padding: 0 20px;
     }
 
     .logo {
-      max-width: 280px;
-      margin: 0 auto 32px;
+      max-width: 260px;
+      margin: 0 auto 36px;
     }
 
     .logo img {
@@ -36,11 +39,50 @@
       display: block;
     }
 
-    .text {
+    .headline {
       font-size: 12px;
       letter-spacing: 2px;
-      color: #b5b5b5;
       line-height: 1.8;
+      color: #b5b5b5;
+      margin-bottom: 36px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    input[type="email"] {
+      background: transparent;
+      border: 1px solid #333;
+      padding: 14px;
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    input::placeholder {
+      color: #666;
+    }
+
+    button {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    .microcopy {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #666;
+      line-height: 1.6;
     }
 
     @media (max-width: 600px) {
@@ -53,15 +95,31 @@
 
 <body>
   <div class="container">
+
     <div class="logo">
-      <!-- REEMPLAZA el nombre del archivo por el de tu logo -->
       <img src="logo-fakeculture.png" alt="Fake Culture Logo">
     </div>
 
-    <div class="text">
-      CULTURE TAKES TIME.<br>
-      SWAG ARCHIVES — COMING SOON
+    <div class="headline">
+      SWAG ARCHIVES<br>
+      EARLY ACCESS
     </div>
+
+    <form action="https://formspree.io/f/mqeqobwo" method="POST">
+      <input
+        type="email"
+        name="email"
+        placeholder="ENTER YOUR EMAIL"
+        required
+      >
+      <button type="submit">GET EARLY ACCESS</button>
+    </form>
+
+    <div class="microcopy">
+      Early access includes a private password<br>
+      and a limited discount.
+    </div>
+
   </div>
 </body>
 </html>
