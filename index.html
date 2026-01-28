@@ -1,281 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FakeCulture</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FakeCulture</title>
 
-  <style>
-    :root{
-      --blue:#1F2D3D;
-      --light:#F5F6F7;
-      --gray:#8A8A8A;
-      --black:#0E0E0E;
-    }
+<style>
+:root{
+  --black:#000;
+  --gray:#888;
+}
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family: Helvetica, Arial, sans-serif;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-    body{
-      background:#fff;
-      color:var(--black);
-    }
+body{
+  background:#fff;
+  color:#000;
+}
 
-    /* =====================
-       PASSWORD SCREEN
-    ====================== */
+/* ================= PASSWORD GATE ================= */
+#gate{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
 
-    #gate{
-      position:fixed;
-      inset:0;
-      background:#000;
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:999;
-    }
+#gate img{
+  width:320px;
+  margin-bottom:40px;
+}
 
-    .gate-box{
-      text-align:center;
-      max-width:420px;
-      padding:40px;
-    }
+#gate h2{
+  color:#fff;
+  font-size:12px;
+  letter-spacing:3px;
+  margin-bottom:20px;
+}
 
-    .gate-box img{
-      width:320px;
-      max-width:100%;
-      margin-bottom:40px;
-    }
+#gate input{
+  background:none;
+  border:1px solid #fff;
+  padding:12px 20px;
+  color:#fff;
+  font-size:12px;
+  letter-spacing:2px;
+  text-align:center;
+  outline:none;
+  width:220px;
+}
 
-    .gate-title{
-      font-size:13px;
-      letter-spacing:2px;
-      margin-bottom:30px;
-      text-transform:uppercase;
-    }
+#gate button{
+  margin-top:20px;
+  padding:10px 24px;
+  background:none;
+  border:1px solid #fff;
+  color:#fff;
+  font-size:12px;
+  letter-spacing:2px;
+  cursor:pointer;
+}
 
-    .gate-input{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-    }
+#error{
+  margin-top:14px;
+  color:#777;
+  font-size:11px;
+  display:none;
+}
 
-    .gate-input input{
-      padding:12px;
-      background:#000;
-      border:1px solid #555;
-      color:#fff;
-      font-size:12px;
-      letter-spacing:1px;
-      flex:1;
-    }
+/* ================= SITE ================= */
+#site{
+  display:none !important;
+}
 
-    .gate-input button{
-      padding:12px 18px;
-      background:#fff;
-      color:#000;
-      border:none;
-      font-size:12px;
-      letter-spacing:1px;
-      cursor:pointer;
-    }
+/* HEADER */
+header{
+  padding:50px;
+  display:flex;
+  justify-content:center;
+  border-bottom:1px solid #eee;
+}
 
-    .gate-error{
-      margin-top:20px;
-      font-size:12px;
-      color:#ff4d4d;
-      display:none;
-    }
+header img{
+  width:300px;
+}
 
-    /* =====================
-       MAIN SITE
-    ====================== */
+/* MAIN */
+main{
+  padding:80px 40px;
+}
 
-    #site{
-      display:none;
-    }
+.section-title{
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--gray);
+  margin-bottom:40px;
+}
 
-    header{
-      padding:40px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      border-bottom:1px solid #eee;
-    }
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+  margin-bottom:100px;
+}
 
-    header img{
-      width:260px;
-    }
+.card{
+  border:1px solid #eee;
+  padding:30px;
+  text-align:center;
+}
 
-    main{
-      padding:80px 40px;
-    }
+.card img{
+  width:100%;
+  margin-bottom:20px;
+}
 
-    .section-title{
-      font-size:12px;
-      letter-spacing:2px;
-      margin-bottom:40px;
-      color:var(--gray);
-      text-transform:uppercase;
-    }
+.card h2{
+  font-size:14px;
+  letter-spacing:1px;
+  margin-bottom:6px;
+}
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:40px;
-      margin-bottom:100px;
-    }
+.price{
+  font-size:12px;
+  color:#000;
+  margin-bottom:20px;
+}
 
-    .card{
-      border:1px solid #eee;
-      padding:30px;
-      text-align:center;
-    }
+.sizes{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:20px;
+}
 
-    .card img{
-      width:100%;
-      margin-bottom:20px;
-    }
+.size{
+  border:1px solid #000;
+  padding:8px 14px;
+  font-size:12px;
+  cursor:pointer;
+}
 
-    .card h2{
-      font-size:14px;
-      margin-bottom:8px;
-      letter-spacing:1px;
-    }
+.size.selected{
+  background:#000;
+  color:#fff;
+}
 
-    .price{
-      font-size:13px;
-      letter-spacing:1px;
-      margin-bottom:20px;
-    }
+.size.sold{
+  border-color:#ccc;
+  color:#aaa;
+  cursor:not-allowed;
+  text-decoration:line-through;
+}
 
-    .soldout{
-      background:#eee;
-      color:#999;
-      padding:10px;
-      font-size:12px;
-    }
+.buy-btn{
+  display:inline-block;
+  padding:10px 22px;
+  border:1px solid #000;
+  font-size:12px;
+  letter-spacing:1px;
+  text-decoration:none;
+  color:#000;
+  opacity:.5;
+  pointer-events:none;
+}
 
-    .sizes{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-bottom:20px;
-    }
+/* FOOTER */
+footer{
+  background:#f5f5f5;
+  padding:60px 40px;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#777;
+}
 
-    .size{
-      border:1px solid #000;
-      padding:8px 14px;
-      font-size:12px;
-      cursor:pointer;
-    }
-
-    .size.selected{
-      background:#000;
-      color:#fff;
-    }
-
-    .size.sold{
-      border-color:#ccc;
-      color:#aaa;
-      text-decoration:line-through;
-      cursor:not-allowed;
-    }
-
-    .buy-btn{
-      display:inline-block;
-      padding:10px 20px;
-      border:1px solid #000;
-      text-decoration:none;
-      color:#000;
-      font-size:12px;
-      letter-spacing:1px;
-    }
-
-    footer{
-      background:var(--light);
-      padding:60px 40px;
-      display:flex;
-      justify-content:space-between;
-      font-size:12px;
-      color:var(--gray);
-    }
-
-    .socials a{
-      margin-left:20px;
-      text-decoration:none;
-      color:var(--gray);
-    }
-  </style>
+footer a{
+  color:#777;
+  text-decoration:none;
+  margin-left:20px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- PASSWORD GATE -->
+<!-- PASSWORD -->
 <div id="gate">
-  <div class="gate-box">
-    <img src="fakeculture-logo-black.png" alt="FakeCulture">
-    <div class="gate-title">Swag Archives</div>
-
-    <div class="gate-input">
-      <input type="password" id="password" placeholder="ENTER PASSWORD">
-      <button onclick="unlock()">ENTER</button>
-    </div>
-
-    <div class="gate-error" id="error">Incorrect password.</div>
-  </div>
+  <img src="fakeculture-logo-black.png">
+  <h2>SWAG ARCHIVES</h2>
+  <input id="password" type="password" placeholder="ENTER PASSWORD">
+  <button onclick="unlock()">ENTER</button>
+  <div id="error">WRONG PASSWORD</div>
 </div>
 
 <!-- SITE -->
 <div id="site">
 
 <header>
-  <img src="fakeculture-logo-blue.png" alt="FakeCulture">
+  <img src="fakeculture-logo-blue.png">
 </header>
 
 <main>
 
-  <div class="section-title">SWAG ARCHIVES — DROP 02</div>
+<div class="section-title">SWAG ARCHIVES — DROP 02</div>
 
-  <div class="products">
-    <div class="card">
-      <img src="hoodie.jpg">
-      <h2>SWAG BLACK HOODIE</h2>
-      <div class="price">220.000 COP</div>
+<div class="products">
+  <div class="card">
+    <img src="hoodie.jpg">
+    <h2>SWAG BLACK HOODIE</h2>
+    <div class="price">220.000 COP</div>
 
-      <div class="sizes">
-        <div class="size">S</div>
-        <div class="size">M</div>
-        <div class="size sold">L</div>
-        <div class="size sold">XL</div>
-      </div>
-
-      <a class="buy-btn" href="https://www.instagram.com/fakeculturebrand" target="_blank">
-        BUY VIA INSTAGRAM DM
-      </a>
+    <div class="sizes">
+      <div class="size">S</div>
+      <div class="size">M</div>
+      <div class="size sold">L</div>
+      <div class="size sold">XL</div>
     </div>
+
+    <a id="buyBtn" class="buy-btn" 
+       href="https://www.instagram.com/fakeculturebrand" 
+       target="_blank">
+      BUY VIA INSTAGRAM DM
+    </a>
+  </div>
+</div>
+
+<div class="section-title">ART CREATIONS — DROP 01</div>
+
+<div class="products">
+  <div class="card">
+    <img src="FullSizeRender.jpeg">
+    <h2>OTRO ATARDECER TEE</h2>
+    <div class="price">SOLD OUT</div>
   </div>
 
-  <div class="section-title">ART CREATIONS — DROP 01</div>
-
-  <div class="products">
-    <div class="card">
-      <img src="FullSizeRender.jpeg">
-      <h2>OTRO ATARDECER TEE</h2>
-      <div class="soldout">SOLD OUT</div>
-    </div>
-
-    <div class="card">
-      <img src="goat-influence.jpg">
-      <h2>GOAT INFLUENCE TEE</h2>
-      <div class="soldout">SOLD OUT</div>
-    </div>
+  <div class="card">
+    <img src="goat-influence.jpg">
+    <h2>GOAT INFLUENCE TEE</h2>
+    <div class="price">SOLD OUT</div>
   </div>
+</div>
 
 </main>
 
@@ -285,7 +260,7 @@
     Refined Essentials For Those Who Know
   </div>
 
-  <div class="socials">
+  <div>
     <a href="https://www.instagram.com/fakeculturebrand" target="_blank">Instagram</a>
     <a href="https://www.tiktok.com/@fakeculture.brand" target="_blank">TikTok</a>
   </div>
@@ -294,25 +269,32 @@
 </div>
 
 <script>
-  function unlock(){
-    const pass = document.getElementById("password").value;
-    const error = document.getElementById("error");
+/* FORCE GATE */
+document.getElementById("gate").style.display="flex";
+document.getElementById("site").style.display="none";
 
-    if(pass === "STAYNICHE16"){
-      document.getElementById("gate").style.display = "none";
-      document.getElementById("site").style.display = "block";
-    } else {
-      error.style.display = "block";
-    }
+function unlock(){
+  const pass=document.getElementById("password").value.trim();
+  if(pass==="STAYNICHE"){
+    document.getElementById("gate").style.display="none";
+    document.getElementById("site").style.display="block";
+  }else{
+    document.getElementById("error").style.display="block";
   }
+}
 
-  const sizes = document.querySelectorAll('.size:not(.sold)');
-  sizes.forEach(size => {
-    size.addEventListener('click', () => {
-      sizes.forEach(s => s.classList.remove('selected'));
-      size.classList.add('selected');
-    });
+/* SIZES */
+const sizes=document.querySelectorAll('.size:not(.sold)');
+const buyBtn=document.getElementById('buyBtn');
+
+sizes.forEach(size=>{
+  size.addEventListener('click',()=>{
+    sizes.forEach(s=>s.classList.remove('selected'));
+    size.classList.add('selected');
+    buyBtn.style.opacity="1";
+    buyBtn.style.pointerEvents="auto";
   });
+});
 </script>
 
 </body>
