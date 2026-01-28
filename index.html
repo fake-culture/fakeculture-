@@ -25,7 +25,81 @@
       color:var(--black);
     }
 
-    /* HEADER */
+    /* =====================
+       PASSWORD SCREEN
+    ====================== */
+
+    #gate{
+      position:fixed;
+      inset:0;
+      background:#000;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+    }
+
+    .gate-box{
+      text-align:center;
+      max-width:420px;
+      padding:40px;
+    }
+
+    .gate-box img{
+      width:320px;
+      max-width:100%;
+      margin-bottom:40px;
+    }
+
+    .gate-title{
+      font-size:13px;
+      letter-spacing:2px;
+      margin-bottom:30px;
+      text-transform:uppercase;
+    }
+
+    .gate-input{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+    }
+
+    .gate-input input{
+      padding:12px;
+      background:#000;
+      border:1px solid #555;
+      color:#fff;
+      font-size:12px;
+      letter-spacing:1px;
+      flex:1;
+    }
+
+    .gate-input button{
+      padding:12px 18px;
+      background:#fff;
+      color:#000;
+      border:none;
+      font-size:12px;
+      letter-spacing:1px;
+      cursor:pointer;
+    }
+
+    .gate-error{
+      margin-top:20px;
+      font-size:12px;
+      color:#ff4d4d;
+      display:none;
+    }
+
+    /* =====================
+       MAIN SITE
+    ====================== */
+
+    #site{
+      display:none;
+    }
+
     header{
       padding:40px;
       display:flex;
@@ -36,10 +110,8 @@
 
     header img{
       width:260px;
-      height:auto;
     }
 
-    /* MAIN */
     main{
       padding:80px 40px;
     }
@@ -67,7 +139,6 @@
 
     .card img{
       width:100%;
-      display:block;
       margin-bottom:20px;
     }
 
@@ -77,15 +148,9 @@
       letter-spacing:1px;
     }
 
-    .card .price{
+    .price{
       font-size:13px;
       letter-spacing:1px;
-      margin-bottom:20px;
-    }
-
-    .card p{
-      font-size:12px;
-      color:var(--gray);
       margin-bottom:20px;
     }
 
@@ -94,10 +159,8 @@
       color:#999;
       padding:10px;
       font-size:12px;
-      letter-spacing:1px;
     }
 
-    /* SIZES */
     .sizes{
       display:flex;
       justify-content:center;
@@ -126,7 +189,6 @@
 
     .buy-btn{
       display:inline-block;
-      margin-top:10px;
       padding:10px 20px;
       border:1px solid #000;
       text-decoration:none;
@@ -135,35 +197,49 @@
       letter-spacing:1px;
     }
 
-    /* FOOTER */
     footer{
       background:var(--light);
       padding:60px 40px;
       display:flex;
       justify-content:space-between;
-      align-items:flex-end;
       font-size:12px;
       color:var(--gray);
     }
 
     .socials a{
       margin-left:20px;
-      color:var(--gray);
       text-decoration:none;
+      color:var(--gray);
     }
   </style>
 </head>
 
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <img src="fakeculture-logo-black.png" alt="FakeCulture">
+    <div class="gate-title">Swag Archives</div>
+
+    <div class="gate-input">
+      <input type="password" id="password" placeholder="ENTER PASSWORD">
+      <button onclick="unlock()">ENTER</button>
+    </div>
+
+    <div class="gate-error" id="error">Incorrect password.</div>
+  </div>
+</div>
+
+<!-- SITE -->
+<div id="site">
+
 <header>
-  <!-- REEMPLAZA CON TU LOGO AZUL -->
-  <img src="fakeculture-logo-blue.png" alt="FakeCulture Logo">
+  <img src="fakeculture-logo-blue.png" alt="FakeCulture">
 </header>
 
 <main>
 
-  <!-- DROP 02 -->
   <div class="section-title">SWAG ARCHIVES — DROP 02</div>
 
   <div class="products">
@@ -179,30 +255,24 @@
         <div class="size sold">XL</div>
       </div>
 
-      <a 
-        class="buy-btn" 
-        href="https://www.instagram.com/fakeculturebrand" 
-        target="_blank">
+      <a class="buy-btn" href="https://www.instagram.com/fakeculturebrand" target="_blank">
         BUY VIA INSTAGRAM DM
       </a>
     </div>
   </div>
 
-  <!-- DROP 01 -->
   <div class="section-title">ART CREATIONS — DROP 01</div>
 
   <div class="products">
     <div class="card">
       <img src="FullSizeRender.jpeg">
       <h2>OTRO ATARDECER TEE</h2>
-      <p>First Drop</p>
       <div class="soldout">SOLD OUT</div>
     </div>
 
     <div class="card">
       <img src="goat-influence.jpg">
       <h2>GOAT INFLUENCE TEE</h2>
-      <p>First Drop</p>
       <div class="soldout">SOLD OUT</div>
     </div>
   </div>
@@ -221,9 +291,22 @@
   </div>
 </footer>
 
-<script>
-  const sizes = document.querySelectorAll('.size:not(.sold)');
+</div>
 
+<script>
+  function unlock(){
+    const pass = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if(pass === "STAYNICHE"){
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("site").style.display = "block";
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  const sizes = document.querySelectorAll('.size:not(.sold)');
   sizes.forEach(size => {
     size.addEventListener('click', () => {
       sizes.forEach(s => s.classList.remove('selected'));
