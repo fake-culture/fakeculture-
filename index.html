@@ -35,7 +35,7 @@
     }
 
     header img{
-      width:260px; /* LOGO GRANDE */
+      width:260px;
       height:auto;
     }
 
@@ -77,6 +77,12 @@
       letter-spacing:1px;
     }
 
+    .card .price{
+      font-size:13px;
+      letter-spacing:1px;
+      margin-bottom:20px;
+    }
+
     .card p{
       font-size:12px;
       color:var(--gray);
@@ -103,12 +109,19 @@
       border:1px solid #000;
       padding:8px 14px;
       font-size:12px;
+      cursor:pointer;
+    }
+
+    .size.selected{
+      background:#000;
+      color:#fff;
     }
 
     .size.sold{
       border-color:#ccc;
       color:#aaa;
       text-decoration:line-through;
+      cursor:not-allowed;
     }
 
     .buy-btn{
@@ -144,7 +157,7 @@
 <body>
 
 <header>
-  <!-- REEMPLAZA src CON TU LOGO AZUL -->
+  <!-- REEMPLAZA CON TU LOGO AZUL -->
   <img src="fakeculture-logo-blue.png" alt="FakeCulture Logo">
 </header>
 
@@ -157,7 +170,7 @@
     <div class="card">
       <img src="hoodie.jpg">
       <h2>SWAG BLACK HOODIE</h2>
-      <p>Second Drop</p>
+      <div class="price">220.000 COP</div>
 
       <div class="sizes">
         <div class="size">S</div>
@@ -207,6 +220,17 @@
     <a href="https://www.tiktok.com/@fakeculture.brand" target="_blank">TikTok</a>
   </div>
 </footer>
+
+<script>
+  const sizes = document.querySelectorAll('.size:not(.sold)');
+
+  sizes.forEach(size => {
+    size.addEventListener('click', () => {
+      sizes.forEach(s => s.classList.remove('selected'));
+      size.classList.add('selected');
+    });
+  });
+</script>
 
 </body>
 </html>
