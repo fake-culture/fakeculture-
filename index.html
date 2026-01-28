@@ -31,25 +31,15 @@
       top:0;
       background:#fff;
       border-bottom:1px solid #eee;
-      padding:20px 40px;
+      padding:30px 40px;
       display:flex;
-      justify-content:space-between;
+      justify-content:center;
       align-items:center;
       z-index:10;
     }
 
     .logo img{
-      height:24px;
-    }
-
-    .cart-btn{
-      background:#000;
-      color:#fff;
-      border:none;
-      padding:10px 16px;
-      font-size:12px;
-      letter-spacing:1px;
-      cursor:pointer;
+      height:48px;
     }
 
     /* MAIN */
@@ -112,9 +102,14 @@
 
     .size{
       border:1px solid #000;
-      padding:6px 10px;
+      padding:6px 12px;
       font-size:12px;
       cursor:pointer;
+    }
+
+    .size.active{
+      background:#000;
+      color:#fff;
     }
 
     .size.sold{
@@ -124,25 +119,21 @@
       text-decoration:line-through;
     }
 
-    /* BUTTONS */
-    .actions button{
+    /* BUTTON */
+    .buy{
       width:100%;
       padding:12px;
-      margin-top:10px;
       border:none;
       font-size:12px;
       letter-spacing:1px;
       cursor:pointer;
-    }
-
-    .buy{
       background:var(--blue);
       color:#fff;
     }
 
-    .add-cart{
-      background:#000;
-      color:#fff;
+    .buy.disabled{
+      background:#ccc;
+      cursor:not-allowed;
     }
 
     /* HYPE */
@@ -173,19 +164,39 @@
 
 <header>
   <div class="logo">
-    <!-- Reemplaza el src por tu logo azul -->
+    <!-- Pon aquí tu imagen del logo azul -->
     <img src="fakeculture-logo-blue.png" alt="Fake Culture">
   </div>
-
-  <button class="cart-btn" onclick="alert('Cart coming soon')">CART</button>
 </header>
 
 <main>
+
+  <!-- DROP 02 -->
+  <div class="section-title">SWAG ARCHIVES — DROP 02</div>
+
+  <div class="products">
+    <div class="card">
+      <img src="swag-black-hoodie.jpg">
+      <h2>SWAG BLACK HOODIE</h2>
+      <p>New Drop</p>
+
+      <div class="sizes">
+        <div class="size" onclick="selectSize(this)">S</div>
+        <div class="size" onclick="selectSize(this)">M</div>
+        <div class="size sold">L</div>
+        <div class="size sold">XL</div>
+      </div>
+
+      <button id="buyBtn" class="buy disabled" onclick="buyDM()">
+        BUY VIA DM
+      </button>
+    </div>
+  </div>
+
+  <!-- DROP 01 -->
   <div class="section-title">OUR CREATIONS — DROP 01</div>
 
   <div class="products">
-
-    <!-- TEE 1 -->
     <div class="card">
       <img src="FullSizeRender.jpeg">
       <h2>OTRO ATARDECER TEE</h2>
@@ -193,37 +204,12 @@
       <div class="soldout">SOLD OUT</div>
     </div>
 
-    <!-- TEE 2 -->
     <div class="card">
       <img src="goat-influence.jpg">
       <h2>GOAT INFLUENCE TEE</h2>
       <p>First Drop</p>
       <div class="soldout">SOLD OUT</div>
     </div>
-
-    <!-- HOODIE -->
-    <div class="card">
-      <img src="swag-black-hoodie.jpg">
-      <h2>SWAG BLACK HOODIE</h2>
-      <p>New Drop</p>
-
-      <div class="sizes">
-        <div class="size">S</div>
-        <div class="size">M</div>
-        <div class="size sold">L</div>
-        <div class="size sold">XL</div>
-      </div>
-
-      <div class="actions">
-        <button class="buy" onclick="window.location.href='https://instagram.com/fakeculture'">
-          BUY VIA DM
-        </button>
-        <button class="add-cart" onclick="alert('Added to cart')">
-          ADD TO CART
-        </button>
-      </div>
-    </div>
-
   </div>
 
   <div class="coming">
@@ -232,6 +218,7 @@
       #NICHE #SWAG
     </p>
   </div>
+
 </main>
 
 <footer>
@@ -243,6 +230,33 @@
     Instagram
   </div>
 </footer>
+
+<script>
+  let selectedSize = null;
+
+  function selectSize(el){
+    if(el.classList.contains('sold')) return;
+
+    document.querySelectorAll('.size').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    selectedSize = el.innerText;
+
+    document.getElementById('buyBtn').classList.remove('disabled');
+  }
+
+  function buyDM(){
+    if(!selectedSize) return;
+
+    const message = encodeURIComponent(
+      `Hi Fake Culture, I want the SWAG BLACK HOODIE in size ${selectedSize}.`
+    );
+
+    window.open(
+      `https://www.instagram.com/fakeculturebrand`,
+      '_blank'
+    );
+  }
+</script>
 
 </body>
 </html>
