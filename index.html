@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fake Culture</title>
+  <title>FakeCulture</title>
 
   <style>
     :root{
-      --blue:#1F2B3B;
+      --blue:#1F2D3D;
+      --light:#F5F6F7;
       --gray:#8A8A8A;
       --black:#0E0E0E;
-      --light:#F5F6F7;
     }
 
     *{
@@ -27,24 +27,21 @@
 
     /* HEADER */
     header{
-      position:sticky;
-      top:0;
-      background:#fff;
-      border-bottom:1px solid #eee;
-      padding:30px 40px;
+      padding:40px;
       display:flex;
       justify-content:center;
       align-items:center;
-      z-index:10;
+      border-bottom:1px solid #eee;
     }
 
-    .logo img{
-      height:48px;
+    header img{
+      width:260px; /* LOGO GRANDE */
+      height:auto;
     }
 
     /* MAIN */
     main{
-      padding:60px 40px;
+      padding:80px 40px;
     }
 
     .section-title{
@@ -52,6 +49,7 @@
       letter-spacing:2px;
       margin-bottom:40px;
       color:var(--gray);
+      text-transform:uppercase;
     }
 
     .products{
@@ -69,13 +67,14 @@
 
     .card img{
       width:100%;
+      display:block;
       margin-bottom:20px;
     }
 
     .card h2{
       font-size:14px;
+      margin-bottom:8px;
       letter-spacing:1px;
-      margin-bottom:10px;
     }
 
     .card p{
@@ -102,60 +101,42 @@
 
     .size{
       border:1px solid #000;
-      padding:6px 12px;
+      padding:8px 14px;
       font-size:12px;
-      cursor:pointer;
-    }
-
-    .size.active{
-      background:#000;
-      color:#fff;
     }
 
     .size.sold{
       border-color:#ccc;
       color:#aaa;
-      cursor:not-allowed;
       text-decoration:line-through;
     }
 
-    /* BUTTON */
-    .buy{
-      width:100%;
-      padding:12px;
-      border:none;
+    .buy-btn{
+      display:inline-block;
+      margin-top:10px;
+      padding:10px 20px;
+      border:1px solid #000;
+      text-decoration:none;
+      color:#000;
       font-size:12px;
       letter-spacing:1px;
-      cursor:pointer;
-      background:var(--blue);
-      color:#fff;
-    }
-
-    .buy.disabled{
-      background:#ccc;
-      cursor:not-allowed;
-    }
-
-    /* HYPE */
-    .coming{
-      text-align:center;
-    }
-
-    .coming p{
-      font-size:14px;
-      letter-spacing:1px;
-      color:var(--blue);
-      line-height:1.6;
     }
 
     /* FOOTER */
     footer{
       background:var(--light);
       padding:60px 40px;
-      font-size:12px;
-      color:var(--gray);
       display:flex;
       justify-content:space-between;
+      align-items:flex-end;
+      font-size:12px;
+      color:var(--gray);
+    }
+
+    .socials a{
+      margin-left:20px;
+      color:var(--gray);
+      text-decoration:none;
     }
   </style>
 </head>
@@ -163,10 +144,8 @@
 <body>
 
 <header>
-  <div class="logo">
-    <!-- Pon aquí tu imagen del logo azul -->
-    <img src="fakeculture-logo-blue.png" alt="Fake Culture">
-  </div>
+  <!-- REEMPLAZA src CON TU LOGO AZUL -->
+  <img src="fakeculture-logo-blue.png" alt="FakeCulture Logo">
 </header>
 
 <main>
@@ -176,25 +155,28 @@
 
   <div class="products">
     <div class="card">
-      <img src="swag-black-hoodie.jpg">
+      <img src="hoodie.jpg">
       <h2>SWAG BLACK HOODIE</h2>
-      <p>New Drop</p>
+      <p>Second Drop</p>
 
       <div class="sizes">
-        <div class="size" onclick="selectSize(this)">S</div>
-        <div class="size" onclick="selectSize(this)">M</div>
+        <div class="size">S</div>
+        <div class="size">M</div>
         <div class="size sold">L</div>
         <div class="size sold">XL</div>
       </div>
 
-      <button id="buyBtn" class="buy disabled" onclick="buyDM()">
-        BUY VIA DM
-      </button>
+      <a 
+        class="buy-btn" 
+        href="https://www.instagram.com/fakeculturebrand" 
+        target="_blank">
+        BUY VIA INSTAGRAM DM
+      </a>
     </div>
   </div>
 
   <!-- DROP 01 -->
-  <div class="section-title">OUR CREATIONS — DROP 01</div>
+  <div class="section-title">ART CREATIONS — DROP 01</div>
 
   <div class="products">
     <div class="card">
@@ -212,51 +194,19 @@
     </div>
   </div>
 
-  <div class="coming">
-    <p>
-      CULTURE TAKES TIME<br>
-      #NICHE #SWAG
-    </p>
-  </div>
-
 </main>
 
 <footer>
   <div>
-    Fake Culture © 2025<br>
-    stay niche for the swag
+    FakeCulture © 2025<br>
+    Refined Essentials For Those Who Know
   </div>
-  <div>
-    Instagram
+
+  <div class="socials">
+    <a href="https://www.instagram.com/fakeculturebrand" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@fakeculture.brand" target="_blank">TikTok</a>
   </div>
 </footer>
-
-<script>
-  let selectedSize = null;
-
-  function selectSize(el){
-    if(el.classList.contains('sold')) return;
-
-    document.querySelectorAll('.size').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-    selectedSize = el.innerText;
-
-    document.getElementById('buyBtn').classList.remove('disabled');
-  }
-
-  function buyDM(){
-    if(!selectedSize) return;
-
-    const message = encodeURIComponent(
-      `Hi Fake Culture, I want the SWAG BLACK HOODIE in size ${selectedSize}.`
-    );
-
-    window.open(
-      `https://www.instagram.com/fakeculturebrand`,
-      '_blank'
-    );
-  }
-</script>
 
 </body>
 </html>
