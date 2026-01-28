@@ -7,10 +7,10 @@
 
   <style>
     :root{
-      --blue:#1F2D3D;
-      --light:#F5F6F7;
+      --blue:#1F2B3B;
       --gray:#8A8A8A;
       --black:#0E0E0E;
+      --light:#F5F6F7;
     }
 
     *{
@@ -27,7 +27,7 @@
 
     /* HEADER */
     header{
-      padding:40px;
+      padding:60px 40px 40px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -35,8 +35,8 @@
     }
 
     header img{
-      width:260px; /* LOGO GRANDE */
-      height:auto;
+      width:320px;
+      max-width:80%;
     }
 
     /* MAIN */
@@ -49,7 +49,6 @@
       letter-spacing:2px;
       margin-bottom:40px;
       color:var(--gray);
-      text-transform:uppercase;
     }
 
     .products{
@@ -67,20 +66,55 @@
 
     .card img{
       width:100%;
-      display:block;
       margin-bottom:20px;
     }
 
     .card h2{
       font-size:14px;
-      margin-bottom:8px;
       letter-spacing:1px;
+      margin-bottom:6px;
     }
 
     .card p{
       font-size:12px;
       color:var(--gray);
+      margin-bottom:10px;
+    }
+
+    .price{
+      font-size:13px;
+      letter-spacing:1px;
       margin-bottom:20px;
+    }
+
+    .sizes{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .size{
+      border:1px solid #000;
+      padding:6px 12px;
+      font-size:12px;
+      cursor:pointer;
+    }
+
+    .size.sold{
+      border-color:#ccc;
+      color:#aaa;
+      cursor:not-allowed;
+    }
+
+    .buy-btn{
+      display:inline-block;
+      padding:12px 20px;
+      border:1px solid #000;
+      text-decoration:none;
+      font-size:12px;
+      letter-spacing:1px;
+      color:#000;
     }
 
     .soldout{
@@ -91,52 +125,25 @@
       letter-spacing:1px;
     }
 
-    /* SIZES */
-    .sizes{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-bottom:20px;
-    }
-
-    .size{
-      border:1px solid #000;
-      padding:8px 14px;
-      font-size:12px;
-    }
-
-    .size.sold{
-      border-color:#ccc;
-      color:#aaa;
-      text-decoration:line-through;
-    }
-
-    .buy-btn{
-      display:inline-block;
-      margin-top:10px;
-      padding:10px 20px;
-      border:1px solid #000;
-      text-decoration:none;
-      color:#000;
-      font-size:12px;
-      letter-spacing:1px;
-    }
-
     /* FOOTER */
     footer{
       background:var(--light);
       padding:60px 40px;
+    }
+
+    .footer-bottom{
       display:flex;
       justify-content:space-between;
-      align-items:flex-end;
+      flex-wrap:wrap;
+      gap:20px;
       font-size:12px;
       color:var(--gray);
     }
 
     .socials a{
-      margin-left:20px;
-      color:var(--gray);
+      margin-left:15px;
       text-decoration:none;
+      color:var(--gray);
     }
   </style>
 </head>
@@ -144,8 +151,7 @@
 <body>
 
 <header>
-  <!-- REEMPLAZA src CON TU LOGO AZUL -->
-  <img src="fakeculture-logo-blue.png" alt="FakeCulture Logo">
+  <img src="fakeculture-logo.png" alt="FakeCulture Logo">
 </header>
 
 <main>
@@ -158,6 +164,7 @@
       <img src="hoodie.jpg">
       <h2>SWAG BLACK HOODIE</h2>
       <p>Second Drop</p>
+      <div class="price">220.000 COP</div>
 
       <div class="sizes">
         <div class="size">S</div>
@@ -197,14 +204,16 @@
 </main>
 
 <footer>
-  <div>
-    FakeCulture © 2025<br>
-    Refined Essentials For Those Who Know
-  </div>
+  <div class="footer-bottom">
+    <div>
+      FakeCulture © 2025<br>
+      Refined Essentials For Those Who Know
+    </div>
 
-  <div class="socials">
-    <a href="https://www.instagram.com/fakeculturebrand" target="_blank">Instagram</a>
-    <a href="https://www.tiktok.com/@fakeculture.brand" target="_blank">TikTok</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/fakeculturebrand" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@fakeculture.brand" target="_blank">TikTok</a>
+    </div>
   </div>
 </footer>
 
